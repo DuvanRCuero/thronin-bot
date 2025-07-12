@@ -1,0 +1,13 @@
+colorlog
+mss
+mttkinter
+numpy
+opencv-python
+psutil
+pyautogui
+pynput
+pyperclip
+pytesseract
+pywin32
+requests
+toml

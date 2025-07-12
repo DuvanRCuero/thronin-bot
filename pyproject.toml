@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "thronin"
+version = "1.0.0"
+requires-python = ">=3.10"
+authors = [
+  { name="StevensUneven"},
+]
+description = "A Throne and Liberty Bot"
+readme = "README.md"
+license = "GPL-3.0-or-later"
+keywords = ["Throne and Liberty", "Thronin", "Bot", "Gaming Bot", "MMORPG Bot"]
+
+[project.urls]
+Homepage = "https://patreon.com/ThroninBot"
+Documentation = "https://www.patreon.com/collection/1248947"
+Repository = "https://github.com/StevensUneven/thronin-bot.git"
+Issues = "https://github.com/StevensUneven/thronin-bot/issues"
+Changelog = "https://github.com/StevensUneven/thronin-bot/blob/main/CHANGELOG.md"
+Donate = "https://patreon.com/ThroninBot"
+Patreon = "https://patreon.com/ThroninBot"
+Discord = "https://discord.gg/3eatBVbF48"
+
+[tool.setuptools]
+packages = ["thronin"]
+package-dir = {"" = "src"}
+

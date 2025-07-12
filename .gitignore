@@ -1,0 +1,55 @@
+# ------------------------------------
+# Known generated directories and files to ignore
+# ------------------------------------
+cache/
+dist/
+thronin.spec
+thronin.patched.spec
+
+# ------------------------------------
+# Virtual environments
+# ------------------------------------
+venv/
+env/
+.venv/
+
+# ------------------------------------
+# Python bytecode and compiled files
+# ------------------------------------
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# ------------------------------------
+# Distribution and Packaging
+# ------------------------------------
+.pyarmor/
+dist/
+build/
+*.egg
+*.egg-info/
+
+# ------------------------------------
+# Operating System Metadata
+# ------------------------------------
+.DS_Store
+Thumbs.db
+
+# ------------------------------------
+# IDE / Editor Files
+# ------------------------------------
+.vscode/
+
+# ------------------------------------
+# Testing and Coverage
+# ------------------------------------
+.pytest_cache/
+.coverage
+htmlcov/
+
+# ------------------------------------
+# Temporary and other files
+# ------------------------------------
+*.log
+*.swp
