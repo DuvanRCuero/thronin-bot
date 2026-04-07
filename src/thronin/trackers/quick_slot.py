@@ -33,7 +33,7 @@ class TrackerQuickSlot(Tracker):
 
         # Load Config
         window_size = temp.get("window_size")
-        if temp.get("window_size") != 720 and temp.get("window_size") != 1080:
+        if temp.get("window_size") not in [720, 1080, 1440]:
             raise IncorrectWindowSize(window_size)
         config = self.WINDOW_CONFIGS.get(window_size)
 
@@ -94,6 +94,11 @@ class QuickSlot1(TrackerQuickSlot):
             "xywh": [647, 1054, 1, 1],
             "target_color": np.array([38, 51, 66]),
         },
+        1440: {
+            "tolerance": 10,
+            "xywh": [834, 1402, 1, 1],
+            "target_color": np.array([38, 51, 66]),
+        },
     }
 
     def __init__(self):
@@ -117,6 +122,11 @@ class QuickSlot2(TrackerQuickSlot):
         1080: {
             "tolerance": 10,
             "xywh": [698, 1054, 1, 1],
+            "target_color": np.array([38, 51, 66]),
+        },
+        1440: {
+            "tolerance": 10,
+            "xywh": [906, 1402, 1, 1],
             "target_color": np.array([38, 51, 66]),
         },
     }
@@ -144,6 +154,11 @@ class QuickSlot3(TrackerQuickSlot):
             "xywh": [749, 1054, 1, 1],
             "target_color": np.array([38, 51, 66]),
         },
+        1440: {
+            "tolerance": 10,
+            "xywh": [979, 1402, 1, 1],
+            "target_color": np.array([38, 51, 66]),
+        },
     }
 
     def __init__(self):
@@ -167,6 +182,11 @@ class QuickSlot4(TrackerQuickSlot):
         1080: {
             "tolerance": 10,
             "xywh": [800, 1054, 1, 1],
+            "target_color": np.array([38, 51, 66]),
+        },
+        1440: {
+            "tolerance": 10,
+            "xywh": [1052, 1402, 1, 1],
             "target_color": np.array([38, 51, 66]),
         },
     }
@@ -194,6 +214,11 @@ class QuickSlot5(TrackerQuickSlot):
             "xywh": [851, 1054, 1, 1],
             "target_color": np.array([38, 51, 66]),
         },
+        1440: {
+            "tolerance": 10,
+            "xywh": [1125, 1402, 1, 1],
+            "target_color": np.array([38, 51, 66]),
+        },
     }
 
     def __init__(self):
@@ -217,6 +242,11 @@ class QuickSlot6(TrackerQuickSlot):
         1080: {
             "tolerance": 10,
             "xywh": [902, 1054, 1, 1],
+            "target_color": np.array([38, 51, 66]),
+        },
+        1440: {
+            "tolerance": 10,
+            "xywh": [1198, 1402, 1, 1],
             "target_color": np.array([38, 51, 66]),
         },
     }
@@ -244,6 +274,11 @@ class QuickSlot7(TrackerQuickSlot):
             "xywh": [1004, 1054, 1, 1],
             "target_color": np.array([38, 51, 66]),
         },
+        1440: {
+            "tolerance": 10,
+            "xywh": [1344, 1402, 1, 1],
+            "target_color": np.array([38, 51, 66]),
+        },
     }
 
     def __init__(self):
@@ -267,6 +302,11 @@ class QuickSlot8(TrackerQuickSlot):
         1080: {
             "tolerance": 10,
             "xywh": [1055, 1054, 1, 1],
+            "target_color": np.array([38, 51, 66]),
+        },
+        1440: {
+            "tolerance": 10,
+            "xywh": [1417, 1402, 1, 1],
             "target_color": np.array([38, 51, 66]),
         },
     }
@@ -294,6 +334,11 @@ class QuickSlot9(TrackerQuickSlot):
             "xywh": [1106, 1054, 1, 1],
             "target_color": np.array([38, 51, 66]),
         },
+        1440: {
+            "tolerance": 10,
+            "xywh": [1490, 1402, 1, 1],
+            "target_color": np.array([38, 51, 66]),
+        },
     }
 
     def __init__(self):
@@ -317,6 +362,11 @@ class QuickSlot10(TrackerQuickSlot):
         1080: {
             "tolerance": 10,
             "xywh": [1157, 1054, 1, 1],
+            "target_color": np.array([38, 51, 66]),
+        },
+        1440: {
+            "tolerance": 10,
+            "xywh": [1563, 1402, 1, 1],
             "target_color": np.array([38, 51, 66]),
         },
     }
@@ -344,6 +394,11 @@ class QuickSlot11(TrackerQuickSlot):
             "xywh": [1208, 1054, 1, 1],
             "target_color": np.array([38, 51, 66]),
         },
+        1440: {
+            "tolerance": 10,
+            "xywh": [1636, 1402, 1, 1],
+            "target_color": np.array([38, 51, 66]),
+        },
     }
 
     def __init__(self):
@@ -367,6 +422,11 @@ class QuickSlot12(TrackerQuickSlot):
         1080: {
             "tolerance": 10,
             "xywh": [1259, 1054, 1, 1],
+            "target_color": np.array([38, 51, 66]),
+        },
+        1440: {
+            "tolerance": 10,
+            "xywh": [1708, 1402, 1, 1],
             "target_color": np.array([38, 51, 66]),
         },
     }
@@ -421,6 +481,11 @@ class ItemQuickSlot1(TrackerItemQuickSlot):
             "xywh": [1131, 992, 1, 1],
             "target_color": np.array([39, 52, 70]),
         },
+        1440: {
+            "tolerance": 10,
+            "xywh": [1526, 1314, 1, 1],
+            "target_color": np.array([39, 52, 70]),
+        },
     }
 
     def __init__(self):
@@ -444,6 +509,11 @@ class ItemQuickSlot2(TrackerItemQuickSlot):
         1080: {
             "tolerance": 10,
             "xywh": [1180, 992, 1, 1],
+            "target_color": np.array([39, 52, 70]),
+        },
+        1440: {
+            "tolerance": 10,
+            "xywh": [1595, 1314, 1, 1],
             "target_color": np.array([39, 52, 70]),
         },
     }
@@ -471,6 +541,11 @@ class ItemQuickSlot3(TrackerItemQuickSlot):
             "xywh": [1230, 992, 1, 1],
             "target_color": np.array([39, 52, 70]),
         },
+        1440: {
+            "tolerance": 10,
+            "xywh": [1667, 1314, 1, 1],
+            "target_color": np.array([39, 52, 70]),
+        },
     }
 
     def __init__(self):
@@ -494,6 +569,11 @@ class ItemQuickSlot4(TrackerItemQuickSlot):
         1080: {
             "tolerance": 10,
             "xywh": [1279, 992, 1, 1],
+            "target_color": np.array([39, 52, 70]),
+        },
+        1440: {
+            "tolerance": 10,
+            "xywh": [1737, 1314, 1, 1],
             "target_color": np.array([39, 52, 70]),
         },
     }

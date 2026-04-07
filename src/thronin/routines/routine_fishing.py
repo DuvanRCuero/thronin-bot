@@ -22,6 +22,8 @@ class FishingRoutine(Routine):
         ]
         self._last_seen_bobber_coords = None
         self._first_run = True
+        self._last_reel_direction = None
+        self._fish_not_on_line_count = 0
 
     def run(self):
         temp.raise_if_killswitch_engaged()
@@ -59,54 +61,46 @@ class FishingRoutine(Routine):
 
     def _handle_fish_not_on_line(self):
         if not fish_on_line.get("ready"):
+            self._fish_not_on_line_count += 1
+            logger.debug(f"Fish not on Line (count: {self._fish_not_on_line_count}).")
+            if self._fish_not_on_line_count <= 3:
+                # Debounce: the tracker pixel can flicker when the fish energy bar is
+                # nearly empty — keep reeling for a few more cycles before giving up.
+                time.sleep(0.35)
+                return False
             temp.set("action_log", "Waiting for Fish")
-            logger.debug(f"Fish not on Line.")
             time.sleep(0.35)
             return True
+        self._fish_not_on_line_count = 0
         return False
 
+    def _get_direction(self, bobber_x, center_x):
+        if bobber_x > center_x:
+            return "left"
+        elif bobber_x < center_x:
+            return "right"
+        return self._last_reel_direction or "left"
+
+    def _get_key(self, direction):
+        if direction == "right":
+            return options.get_keybind_key("keybind_move_right")
+        return options.get_keybind_key("keybind_move_left")
+
     def _perform_reeling(self):
-        self._center_x = int(temp.get("window_xywh")[2] / 2)
-        self._bobber_x = bobber.get("last_bobber_x", self._center_x)
-        need_to_reel = None
+        center_x = int(temp.get("window_xywh")[2] / 2)
+        bobber_x = bobber.get("last_bobber_x", center_x)
 
-        # Calculate absolute difference
-        difference = abs(self._center_x - self._bobber_x)
-        # Cap the difference to max_difference
-        max_difference = 100
-        difference = min(difference, max_difference)
+        difference = min(abs(center_x - bobber_x), 100)
+        press_time = 0.4 + (difference / 100) * 0.6
 
-        # Calculate press_time
-        min_press_time = 0.4
-        max_press_time = 1
-        press_time = min_press_time + (difference / max_difference) * (
-            max_press_time - min_press_time
+        direction = self._get_direction(bobber_x, center_x)
+        self._last_reel_direction = direction
+        kb_button = self._get_key(direction)
+
+        logger.debug(
+            f"Bobber ({bobber_x}) vs center ({center_x}), Difference: {difference}, Press Time: {press_time:.2f}, Direction: {direction}"
         )
-
-        if self._bobber_x > self._center_x:
-            logger.debug(
-                f"Bobber ({self._bobber_x}) right of center ({self._center_x}), Difference: {difference}, Press Time: {press_time:.2f}"
-            )
-            need_to_reel = "left"
-        elif self._bobber_x < self._center_x:
-            logger.debug(
-                f"Bobber ({self._bobber_x}) left of center ({self._center_x}), Difference: {difference}, Press Time: {press_time:.2f}"
-            )
-            need_to_reel = "right"
-        else:
-            logger.debug(f"Bobber ({self._bobber_x}) is center ({self._center_x})")
-
-        # Perform keyboard actions
-        if not need_to_reel:
-            logger.debug("Skipping Reel")
-            time.sleep(0.1)
-            return
-        if need_to_reel == "right":
-            kb_button = options.get_keybind_key("keybind_move_right")
-            temp.set("action_log", f"Reeling Right ({kb_button})")
-        if need_to_reel == "left":
-            kb_button = options.get_keybind_key("keybind_move_left")
-            temp.set("action_log", f"Reeling Left ({kb_button})")
+        temp.set("action_log", f"Reeling {direction.capitalize()} ({kb_button})")
         kbm.use_keyboard(kb_button, press_time=press_time, post_time=0.2)
 
 
