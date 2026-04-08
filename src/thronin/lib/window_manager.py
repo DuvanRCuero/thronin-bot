@@ -12,7 +12,7 @@ class WindowManager:
     TITLE_BAR_HEIGHT = 31
     BORDER_WIDTH = 8
     WINDOW_CHECK_INTERVAL = 5  # seconds
-    GAME_TITLE = "THRONE AND LIBERTY"
+    GAME_TITLE = "TL"
 
     def __init__(self):
         self.hwnd = None
