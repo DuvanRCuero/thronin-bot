@@ -33,7 +33,7 @@ class PVPZ(Tracker):
 
         # Load Config
         window_size = temp.get("window_size")
-        if temp.get("window_size") != 720 and temp.get("window_size") != 1080:
+        if temp.get("window_size") not in [720, 1080, 1440]:
             raise IncorrectWindowSize(window_size)
         config = self.WINDOW_CONFIGS.get(window_size)
 
